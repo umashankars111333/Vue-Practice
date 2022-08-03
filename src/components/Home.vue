@@ -12,16 +12,14 @@
       </div>
       <div id="avatar-items">
         <img :src="userData.image" alt="" class="avatar" />
+        <button @click="triggerHome">Click Me</button>
       </div>
+      <div>{{ computedCalled }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-import Skeleton from "vue-loading-skeleton";
-
-Vue.use(Skeleton);
 export default {
   name: "Home",
   props: {
@@ -30,8 +28,35 @@ export default {
       default: () => {},
     },
   },
+  data() {
+    return {
+      users: "Computed",
+      users1: ""
+    };
+  },
+  computed: {
+    computedCalled() {
+      return this.users;
+    },
+  },
   created() {
-    console.log("this.props:", this.userData);
+    alert("Home Created Called:");
+  },
+  mounted() {
+    alert("Mounted called:");
+  },
+  updated() {
+    // this.users = "Computed changed"
+    alert("updated called");
+  },
+  destroyed() {
+    alert("destroyed called");
+  },
+  methods: {
+    triggerHome() {
+      this.users = "Computed changed"
+      // this.$emit("submit");
+    },
   },
 };
 </script>

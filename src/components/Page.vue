@@ -5,7 +5,7 @@
       <div id="navigation-items" data-action="about">About</div>
     </div>
     <div id="navigation-component">
-      <Home v-if="$route.params.menu === 'home'" :userData="userData" />
+      <Home @submit="submit" v-if="$route.params.menu === 'home'" :userData="userData" />
       <About v-if="$route.params.menu === 'about'" />
     </div>
   </div>
@@ -32,7 +32,7 @@ export default {
     };
   },
   created() {
-    setTimeout(() => {
+    // setTimeout(() => {
       Object.assign(this.userData, {
         name: "Umashankar",
         company: "Finastra",
@@ -40,12 +40,21 @@ export default {
         experience: "2 Years",
         image: "Avatar.png",
       });
-    }, 6000);
+    // }, 6000);
   },
   methods: {
     navigationClick(e) {
       this.$router.push(e.target.dataset.action);
     },
+    submit() {
+      Object.assign(this.userData, {
+        name: "Shivashankar",
+        company: "Finastra",
+        role: "Front End Developer",
+        experience: "2 Years",
+        image: "Avatar.png",
+      });
+    }
   },
 };
 </script>
